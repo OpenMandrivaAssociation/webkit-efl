@@ -6,7 +6,7 @@
 Summary: Port of WebKit to EFL
 Name: webkit-efl
 Version: 0.1.0
-Release: %mkrel -c %svnrel 1
+Release: %mkrel -c %svnrel 2
 License: LGPLv2+
 Group: Graphical desktop/Enlightenment
 URL: http://trac.enlightenment.org/e/wiki/EWebKit
