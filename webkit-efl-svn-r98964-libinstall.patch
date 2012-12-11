@@ -1,0 +1,13 @@
+Index: webkit-efl-svn-r98964/Source/WebKit/efl/CMakeListsEfl.txt
+===================================================================
+--- webkit-efl-svn-r98964.orig/Source/WebKit/efl/CMakeListsEfl.txt
++++ webkit-efl-svn-r98964/Source/WebKit/efl/CMakeListsEfl.txt
+@@ -231,7 +231,7 @@ CONFIGURE_FILE(
+     ${CMAKE_BINARY_DIR}/WebKit/efl/ewebkit.pc
+     @ONLY)
+ INSTALL(FILES ${CMAKE_BINARY_DIR}/WebKit/efl/ewebkit.pc
+-    DESTINATION lib/pkgconfig)
++    DESTINATION ${CMAKE_INSTALL_LIBDIR}/pkgconfig)
+ 
+ UNSET(LIBS_PRIVATE)
+ 

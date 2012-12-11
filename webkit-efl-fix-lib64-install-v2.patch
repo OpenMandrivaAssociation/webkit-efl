@@ -1,0 +1,54 @@
+diff --git a/Source/JavaScriptCore/CMakeLists.txt b/Source/JavaScriptCore/CMakeLists.txt
+index 6e39c6e..07130ec 100644
+--- a/Source/JavaScriptCore/CMakeLists.txt
++++ b/Source/JavaScriptCore/CMakeLists.txt
+@@ -263,5 +263,5 @@ ENDIF ()
+ 
+ IF (SHARED_CORE)
+     SET_TARGET_PROPERTIES(${JavaScriptCore_LIBRARY_NAME} PROPERTIES VERSION ${PROJECT_VERSION} SOVERSION ${PROJECT_VERSION_MAJOR})
+-    INSTALL(TARGETS ${JavaScriptCore_LIBRARY_NAME} DESTINATION lib)
++    INSTALL(TARGETS ${JavaScriptCore_LIBRARY_NAME} DESTINATION "lib${LIB_SUFFIX}")
+ ENDIF ()
+diff --git a/Source/JavaScriptCore/wtf/CMakeLists.txt b/Source/JavaScriptCore/wtf/CMakeLists.txt
+index dcaeeb3..8765eea 100644
+--- a/Source/JavaScriptCore/wtf/CMakeLists.txt
++++ b/Source/JavaScriptCore/wtf/CMakeLists.txt
+@@ -230,5 +230,5 @@ ENDIF ()
+ 
+ IF (SHARED_CORE)
+     SET_TARGET_PROPERTIES(${WTF_LIBRARY_NAME} PROPERTIES VERSION ${PROJECT_VERSION} SOVERSION ${PROJECT_VERSION_MAJOR})
+-    INSTALL(TARGETS ${WTF_LIBRARY_NAME} DESTINATION lib)
++    INSTALL(TARGETS ${WTF_LIBRARY_NAME} DESTINATION "lib${LIB_SUFFIX}")
+ ENDIF ()
+diff --git a/Source/WebCore/CMakeLists.txt b/Source/WebCore/CMakeLists.txt
+index 593e493..4f304b5 100644
+--- a/Source/WebCore/CMakeLists.txt
++++ b/Source/WebCore/CMakeLists.txt
+@@ -2387,5 +2387,5 @@ ENDIF ()
+ 
+ IF (SHARED_CORE)
+     SET_TARGET_PROPERTIES(${WebCore_LIBRARY_NAME} PROPERTIES VERSION ${PROJECT_VERSION} SOVERSION ${PROJECT_VERSION_MAJOR})
+-    INSTALL(TARGETS ${WebCore_LIBRARY_NAME} DESTINATION lib)
++    INSTALL(TARGETS ${WebCore_LIBRARY_NAME} DESTINATION "lib${LIB_SUFFIX}")
+ ENDIF ()
+diff --git a/Source/WebKit/CMakeLists.txt b/Source/WebKit/CMakeLists.txt
+index 24566c4..af0417a 100644
+--- a/Source/WebKit/CMakeLists.txt
++++ b/Source/WebKit/CMakeLists.txt
+@@ -81,4 +81,4 @@ IF (VERSION_SCRIPT)
+ ENDIF ()
+ 
+ SET_TARGET_PROPERTIES(${WebKit_LIBRARY_NAME} PROPERTIES VERSION ${PROJECT_VERSION} SOVERSION ${PROJECT_VERSION_MAJOR})
+-INSTALL(TARGETS ${WebKit_LIBRARY_NAME} DESTINATION lib)
++INSTALL(TARGETS ${WebKit_LIBRARY_NAME} DESTINATION "lib${LIB_SUFFIX}")
+diff --git a/Source/cmake/OptionsCommon.cmake b/Source/cmake/OptionsCommon.cmake
+index 27a5e82..be5a1a4 100644
+--- a/Source/cmake/OptionsCommon.cmake
++++ b/Source/cmake/OptionsCommon.cmake
+@@ -14,3 +14,5 @@ ENDIF ()
+ IF (ENABLE_WEBGL)
+     FIND_PACKAGE(OpenGL REQUIRED)
+ ENDIF ()
++
++SET(LIB_SUFFIX "" CACHE STRING "Define suffix of directory name (32/64)")
+ 

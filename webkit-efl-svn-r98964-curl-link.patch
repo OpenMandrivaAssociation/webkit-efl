@@ -1,9 +1,11 @@
---- WebKit/CMakeLists.txt.link	2010-12-18 15:42:42.000000000 +0100
-+++ WebKit/CMakeLists.txt	2010-12-18 15:43:12.000000000 +0100
-@@ -67,7 +67,7 @@
- ADD_DEFINITIONS(-DBUILDING_WebKit)
+Index: webkit-efl-svn-r98964/Source/WebKit/CMakeLists.txt
+===================================================================
+--- webkit-efl-svn-r98964.orig/Source/WebKit/CMakeLists.txt
++++ webkit-efl-svn-r98964/Source/WebKit/CMakeLists.txt
+@@ -70,7 +70,7 @@ ADD_DEFINITIONS(-DBUILDING_WebKit)
  INCLUDE_DIRECTORIES(${WebKit_INCLUDE_DIRECTORIES})
  ADD_LIBRARY(${WebKit_LIBRARY_NAME} ${WebKit_LIBRARY_TYPE} ${WebKit_SOURCES})
+ ADD_DEPENDENCIES(${WebKit_LIBRARY_NAME} ${WebCore_LIBRARY_NAME})
 -TARGET_LINK_LIBRARIES(${WebKit_LIBRARY_NAME} ${WebKit_LIBRARIES})
 +TARGET_LINK_LIBRARIES(${WebKit_LIBRARY_NAME} ${WebKit_LIBRARIES} ${Gthread_LIBRARIES})
  

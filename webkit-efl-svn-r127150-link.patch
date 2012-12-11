@@ -1,0 +1,19 @@
+--- webkit-efl-svn-r127150/Tools/DumpRenderTree/TestNetscapePlugIn/CMakeLists.txt~	2012-08-31 02:44:46.000000000 +0800
++++ webkit-efl-svn-r127150/Tools/DumpRenderTree/TestNetscapePlugIn/CMakeLists.txt	2012-11-09 17:19:35.636174792 +0800
+@@ -33,3 +33,5 @@
+ INCLUDE_DIRECTORIES(${WebKitTestNetscapePlugin_INCLUDE_DIRECTORIES})
+ 
+ ADD_LIBRARY(TestNetscapePlugin SHARED ${WebKitTestNetscapePlugin_SOURCES})
++
++target_link_libraries(TestNetscapePlugin X11)
+--- webkit-efl-svn-r127150/Source/WebKit/CMakeLists.txt~	2012-08-31 02:44:46.000000000 +0800
++++ webkit-efl-svn-r127150/Source/WebKit/CMakeLists.txt	2012-11-09 22:52:07.194091941 +0800
+@@ -73,7 +73,7 @@
+ ENDIF ()
+ 
+ SET(WebKit_LIBRARIES
+-    ${WebCore_LIBRARY_NAME}
++    ${WebCore_LIBRARY_NAME} ${WTF_LIBRARY_NAME} ${JavaScriptCore_LIBRARY_NAME}
+ )
+ 
+ WEBKIT_INCLUDE_CONFIG_FILES_IF_EXISTS()

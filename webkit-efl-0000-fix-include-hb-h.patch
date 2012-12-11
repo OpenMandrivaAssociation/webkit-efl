@@ -1,0 +1,26 @@
+Index: webkit-efl-svn-r127150/Source/WebCore/platform/graphics/harfbuzz/ng/HarfBuzzNGFaceCairo.cpp
+===================================================================
+--- webkit-efl-svn-r127150.orig/Source/WebCore/platform/graphics/harfbuzz/ng/HarfBuzzNGFaceCairo.cpp
++++ webkit-efl-svn-r127150/Source/WebCore/platform/graphics/harfbuzz/ng/HarfBuzzNGFaceCairo.cpp
+@@ -41,7 +41,7 @@
+ #include <cairo.h>
+ #include <freetype/freetype.h>
+ #include <freetype/tttables.h>
+-#include <hb.h>
++#include <harfbuzz/hb.h>
+ #include <wtf/text/CString.h>
+ 
+ namespace WebCore {
+Index: webkit-efl-svn-r127150/Source/WebCore/platform/graphics/harfbuzz/ng/HarfBuzzNGFace.h
+===================================================================
+--- webkit-efl-svn-r127150.orig/Source/WebCore/platform/graphics/harfbuzz/ng/HarfBuzzNGFace.h
++++ webkit-efl-svn-r127150/Source/WebCore/platform/graphics/harfbuzz/ng/HarfBuzzNGFace.h
+@@ -31,7 +31,7 @@
+ #ifndef HarfBuzzNGFace_h
+ #define HarfBuzzNGFace_h
+ 
+-#include <hb.h>
++#include <harfbuzz/hb.h>
+ 
+ #include <wtf/PassRefPtr.h>
+ #include <wtf/RefCounted.h>

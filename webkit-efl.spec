@@ -1,19 +1,22 @@
 %define major 0
 %define libname %mklibname %name %major
 %define develname %mklibname -d %name
-%define svnrel 72693
+%define svnrel 127150
 
 Summary: Port of WebKit to EFL
 Name: webkit-efl
 Version: 0.1.0
-Release: %mkrel -c %svnrel 3
+Release: %mkrel -c r%svnrel 6
 License: LGPLv2+
 Group: Graphical desktop/Enlightenment
 URL: http://trac.enlightenment.org/e/wiki/EWebKit
-Source: http://packages.profusion.mobi/webkit-efl/webkit-efl-svn-r%{svnrel}.tar.bz2
-Patch0: webkit-efl-svn-r72693-libinstall.patch
-Patch1: webkit-efl-svn-r72693-curl-link.patch
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
+Source0: http://packages.profusion.mobi/webkit-efl/%name-svn-r%{svnrel}.tar.bz2
+Patch0: webkit-efl-svn-r98964-libinstall.patch
+Patch1: webkit-efl-svn-r98964-curl-link.patch
+Patch2: webkit-efl-remove-minor-in-dep.patch
+Patch3: webkit-efl-fix-lib64-install-v2.patch
+Patch4: webkit-efl-0000-fix-include-hb-h.patch
+Patch5: webkit-efl-svn-r127150-link.patch
 BuildRequires: cmake
 BuildRequires: bison
 BuildRequires: flex
@@ -24,18 +27,27 @@ BuildRequires: embryo
 BuildRequires: edje-devel
 BuildRequires: evas-devel
 BuildRequires: eina-devel
-BuildRequires: icu-devel
+BuildRequires: e_dbus-devel
+BuildRequires: e_dbus
+BuildRequires: eeze-devel
+BuildRequires: efreet-devel
+BuildRequires: pkgconfig(icu-i18n)
 BuildRequires: jpeg-devel
-BuildRequires: png-devel
-BuildRequires: sqlite3-devel
-BuildRequires: curl-devel
+BuildRequires: pkgconfig(libpng)
+BuildRequires: pkgconfig(sqlite3)
+BuildRequires: pkgconfig(libcurl)
 BuildRequires: libgstreamer0.10-plugins-base-devel
 BuildRequires: fontconfig-devel
-BuildRequires: freetype2-devel
-BuildRequires: cairo-devel
-BuildRequires: gtk+2-devel
-BuildRequires: libxml2-devel
-BuildRequires: libxslt-devel
+BuildRequires: pkgconfig(freetype2)
+BuildRequires: pkgconfig(cairo)
+BuildRequires: pkgconfig(gtk+-2.0)
+BuildRequires: pkgconfig(libxml-2.0)
+BuildRequires: pkgconfig(libxslt)
+BuildRequires: libsoup-devel
+BuildRequires: harfbuzz-devel
+BuildRequires: pkgconfig(x11)
+BuildRequires: gtest-devel
+
 
 %description
 Also known as WebKit-EFL, this is the port of WebKit to EFL. In order to
@@ -62,29 +74,27 @@ Provides: ewebkit-devel = %version-%release
 ewebkit development headers and development libraries.
 
 %prep
-%setup -q -n webkit-efl-svn-r%{svnrel}
-%patch0 -p0
-%patch1 -p0
+%setup -qn %name-svn-r%svnrel
+%patch4 -p1
+%patch5 -p1
 
 %build
-%cmake -DPORT=Efl -DNETWORK_BACKEND=curl
+%cmake .. -DPORT=Efl -DSHARED_CORE=ON -DCMAKE_BUILD_TYPE=Release -DNETWORK_BACKEND=curl
 %make
 
 %install
-rm -rf $RPM_BUILD_ROOT
 %makeinstall_std -C build
 
-%clean
-rm -rf $RPM_BUILD_ROOT
-
 %files -n %libname
-%defattr(-,root,root)
 %{_datadir}/ewebkit-0
 %{_libdir}/libewebkit.so.0
 %{_libdir}/libewebkit.so.0.*
+%{_libdir}/libjavascriptcore_efl.so.0
+%{_libdir}/libjavascriptcore_efl.so.0.*
+%{_libdir}/libwebcore_efl.so.0
+%{_libdir}/libwebcore_efl.so.0.*
 
 %files -n %develname
-%defattr(-,root,root)
 %{_libdir}/*.so
-%{_libdir}/pkgconfig/*.pc
+%{_prefix}/lib/pkgconfig/*.pc
 %{_includedir}/ewebkit-0
