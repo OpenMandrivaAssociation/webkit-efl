@@ -9,7 +9,7 @@ Version: 0.1.0
 Release: %mkrel -c r%svnrel 6
 License: LGPLv2+
 Group: Graphical desktop/Enlightenment
-URL: http://trac.enlightenment.org/e/wiki/EWebKit
+URL: https://trac.enlightenment.org/e/wiki/EWebKit
 Source0: http://packages.profusion.mobi/webkit-efl/%name-svn-r%{svnrel}.tar.bz2
 Patch0: webkit-efl-svn-r98964-libinstall.patch
 Patch1: webkit-efl-svn-r98964-curl-link.patch
